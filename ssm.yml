@@ -1,0 +1,14 @@
+#####
+# Host config for ssm-demo.yml
+#####
+
+- hosts: switches
+  become: true
+  roles:
+  - switches
+
+- hosts: servers
+  become: true
+  roles:
+  - servers
+  - serverExtras
