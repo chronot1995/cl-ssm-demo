@@ -7,7 +7,6 @@ service integrated-vtysh-config
 !
 router bgp 65111
  bgp router-id 10.1.1.2
- no bgp default ipv4-unicast
  neighbor EBGP peer-group
  neighbor EBGP remote-as external
  neighbor swp1 interface peer-group EBGP
@@ -17,19 +16,9 @@ router bgp 65111
  !
  !
  address-family ipv4 unicast
-  network 10.1.1.1/32 label-index 1
-  network 10.1.1.2/32 label-index 2
-  network 10.1.1.11/32 label-index 11
-  network 10.1.1.12/32 label-index 12
-  network 10.1.1.13/32 label-index 13
-  network 10.1.1.14/32 label-index 14
+  network 10.1.1.2/32
  exit-address-family
  !
- address-family ipv4 labeled-unicast
-  neighbor EBGP activate
- exit-address-family
-!
-mpls label global-block 100 200
 !
 line vty
 !

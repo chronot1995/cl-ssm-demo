@@ -17,8 +17,7 @@ iface eth0 inet dhcp
 auto swp1
 iface swp1
     address 192.168.11.1/24
-    mpls-enable yes
-    
+
 auto swp2
 iface swp2
     link-down yes
@@ -37,11 +36,9 @@ iface swp50
 
 auto swp51
 iface swp51
-    mpls-enable yes
 
 auto swp52
 iface swp52
-    mpls-enable yes
 
 auto swp53
 iface swp53

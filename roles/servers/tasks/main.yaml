@@ -1,18 +1,18 @@
 ---
 
-- name: Copy server01 and server04 interfaces configuration
+- name: Copy server01 interfaces configuration
   template:
-    src: interfaces-odd.j2
+    src: interfaces-server01.j2
     dest: /etc/network/interfaces
     backup: yes
-  when: (inventory_hostname == "server01") or (inventory_hostname == "server04")
+  when: inventory_hostname == "server01"
 
-- name: Copy server02 and server05 interfaces configuration
+- name: Copy server05 interfaces configuration
   template:
-    src: interfaces-even.j2
+    src: interfaces-server05.j2
     dest: /etc/network/interfaces
     backup: yes
-  when: (inventory_hostname == "server02") or (inventory_hostname == "server05")
+  when: inventory_hostname == "server05"
 
 - name: Sleep for server to disconnect
   pause:

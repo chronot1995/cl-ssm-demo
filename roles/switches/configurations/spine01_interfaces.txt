@@ -16,27 +16,15 @@ iface eth0 inet dhcp
 
 auto swp1
 iface swp1
-    mpls-enable yes
 
 auto swp2
 iface swp2
-    mpls-enable yes
 
 auto swp3
 iface swp3
-    mpls-enable yes
 
 auto swp4
 iface swp4
-    mpls-enable yes
-
-auto swp5
-iface swp5
-    link-down yes
-
-auto swp6
-iface swp6
-    link-down yes
 
 auto mgmt
 iface mgmt
