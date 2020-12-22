@@ -8,8 +8,7 @@
 
 - name: Install iperf2
   apt:
-    name: iperf2
-    update_cache: yes
+    name: iperf
     state: latest
 
 - name: Flush Handlers, best practice

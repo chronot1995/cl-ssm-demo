@@ -21,9 +21,9 @@ leaf04
 [servers]
 #oob-mgmt-server ansible_host=192.168.200.1
 server01
-server02
+#server02
 #server03
-server04
+#server04
 server05
 #server06
 #server07
