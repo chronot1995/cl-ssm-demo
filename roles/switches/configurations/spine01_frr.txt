@@ -22,3 +22,11 @@ router bgp 65111
 !
 line vty
 !
+interface swp1
+ ip pim
+interface swp2
+ ip pim
+interface swp3
+ ip pim
+interface swp4
+ ip pim

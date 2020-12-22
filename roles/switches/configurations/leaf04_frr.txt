@@ -21,3 +21,10 @@ router bgp 65014
 !
 line vty
 !
+interface swp2
+ ip igmp
+ ip pim
+interface swp51
+ ip pim
+interface swp52
+ ip pim
