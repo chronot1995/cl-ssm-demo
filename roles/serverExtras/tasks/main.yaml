@@ -6,9 +6,9 @@
     update_cache: yes
     state: latest
 
-- name: Install iperf2
+- name: Install ssmping
   apt:
-    name: iperf
+    name: ssmping
     state: latest
 
 - name: Flush Handlers, best practice

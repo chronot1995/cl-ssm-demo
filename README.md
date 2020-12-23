@@ -1,10 +1,10 @@
-# Source-Specific Multicast Demo
+# Source Specific Multicast Demo
 
-Source-Specific Multicast Demo
+Source Specific Multicast Demo
 
 ### Description
 
-This will demo Source-Specific Multicast (SSM) on Cumulus Linux
+This will demo Source Specific Multicast (SSM) on Cumulus Linux
 
 1. First, create a "Cumulus In the Cloud" Reference Topology within Cumulus Air. We will be presenting this demo using a subset of the overall cldemo2 topology.
 
@@ -32,69 +32,122 @@ This will setup a BGP underlay between the leaf01-04 and spine01-02. The remaini
 
 1. First, you will need to open a few SSH sessions within Cumulus Air.
 
-2. Log into server05 and start the iperf server in SSM mode with the following command:
+2. Log into server05 and start the ssmping server with the following command:
 
 ```
-iperf -s -u -B 239.5.5.5 -i 1
+ssmpingd
 ```
 
-3. Log into server01 and start the iperf client in SSM mode with the following command:
+3. Log into server01 and start the ssmping client with the following command:
 
 ```
-iperf -c 239.5.5.5 -u -T 32 -t 500 -i 1
+ssmping -4 -I eth1 -c 100 192.168.55.222
 ```
 
-4. iperf server output:
+4. ssmpingd server output:
 
 ```
-cumulus@server05:~$ iperf -s -u -B 239.5.5.5 -i 1
-------------------------------------------------------------
-Server listening on UDP port 5001
-Binding to local address 239.5.5.5
-Joining multicast group  239.5.5.5
-Receiving 1470 byte datagrams
-UDP buffer size:  208 KByte (default)
-------------------------------------------------------------
-[  3] local 239.5.5.5 port 5001 connected with 192.168.200.31 port 50928
-[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams
-[  3]  0.0- 1.0 sec   129 KBytes  1.06 Mbits/sec   0.246 ms    0/   90 (0%)
-[  3]  1.0- 2.0 sec   128 KBytes  1.05 Mbits/sec   0.674 ms    0/   89 (0%)
-[  3]  2.0- 3.0 sec   128 KBytes  1.05 Mbits/sec   0.290 ms    0/   89 (0%)
-[  3]  3.0- 4.0 sec   128 KBytes  1.05 Mbits/sec   0.215 ms    0/   89 (0%)
-[  3]  4.0- 5.0 sec   128 KBytes  1.05 Mbits/sec   0.251 ms    0/   89 (0%)
-[  3]  5.0- 6.0 sec   128 KBytes  1.05 Mbits/sec   0.204 ms    0/   89 (0%)
-[  3]  6.0- 7.0 sec   129 KBytes  1.06 Mbits/sec   0.229 ms    0/   90 (0%)
-[  3]  7.0- 8.0 sec   128 KBytes  1.05 Mbits/sec   0.294 ms    0/   89 (0%)
-[  3]  8.0- 9.0 sec   128 KBytes  1.05 Mbits/sec   0.272 ms    0/   89 (0%)
-[  3]  9.0-10.0 sec   128 KBytes  1.05 Mbits/sec   0.248 ms    0/   89 (0%)
-[  3] 10.0-11.0 sec   128 KBytes  1.05 Mbits/sec   0.252 ms    0/   89 (0%)
-[  3] 11.0-12.0 sec   128 KBytes  1.05 Mbits/sec   0.300 ms    0/   89 (0%)
+cumulus@server05:~$ ssmpingd
+received request from 192.168.11.111
+received request from 192.168.11.111
+received request from 192.168.11.111
+received request from 192.168.11.111
+received request from 192.168.11.111
+received request from 192.168.11.111
+received request from 192.168.11.111
+received request from 192.168.11.111
+received request from 192.168.11.111
+received request from 192.168.11.111
+received request from 192.168.11.111
+received request from 192.168.11.111
+received request from 192.168.11.111
+received request from 192.168.11.111
 ```
 
-5. iperf client output:
+5. ssmping client output:
 
 ```
-cumulus@server01:~$ iperf -c 239.5.5.5 -u -T 32 -t 500 -i 1
-------------------------------------------------------------
-Client connecting to 239.5.5.5, UDP port 5001
-Sending 1470 byte datagrams, IPG target: 11215.21 us (kalman adjust)
-Setting multicast TTL to 32
-UDP buffer size:  208 KByte (default)
-------------------------------------------------------------
-[  3] local 192.168.200.31 port 50928 connected with 239.5.5.5 port 5001
-[ ID] Interval       Transfer     Bandwidth
-[  3]  0.0- 1.0 sec   131 KBytes  1.07 Mbits/sec
-[  3]  1.0- 2.0 sec   128 KBytes  1.05 Mbits/sec
-[  3]  2.0- 3.0 sec   128 KBytes  1.05 Mbits/sec
-[  3]  3.0- 4.0 sec   128 KBytes  1.05 Mbits/sec
-[  3]  4.0- 5.0 sec   128 KBytes  1.05 Mbits/sec
-[  3]  5.0- 6.0 sec   128 KBytes  1.05 Mbits/sec
-[  3]  6.0- 7.0 sec   129 KBytes  1.06 Mbits/sec
-[  3]  7.0- 8.0 sec   128 KBytes  1.05 Mbits/sec
-[  3]  8.0- 9.0 sec   128 KBytes  1.05 Mbits/sec
-[  3]  9.0-10.0 sec   128 KBytes  1.05 Mbits/sec
-[  3] 10.0-11.0 sec   128 KBytes  1.05 Mbits/sec
-[  3] 11.0-12.0 sec   128 KBytes  1.05 Mbits/sec
+cumulus@server01:~$ ssmping -4 -I eth1 -c 100 192.168.55.222
+ssmping joined (S,G) = (192.168.55.222,232.43.211.234)
+pinging S from 192.168.11.111
+  unicast from 192.168.55.222, seq=1 dist=3 time=3.406 ms
+  unicast from 192.168.55.222, seq=2 dist=3 time=2.914 ms
+multicast from 192.168.55.222, seq=2 dist=3 time=3.450 ms
+  unicast from 192.168.55.222, seq=3 dist=3 time=4.207 ms
+multicast from 192.168.55.222, seq=3 dist=3 time=4.236 ms
+  unicast from 192.168.55.222, seq=4 dist=3 time=3.234 ms
+multicast from 192.168.55.222, seq=4 dist=3 time=3.576 ms
+  unicast from 192.168.55.222, seq=5 dist=3 time=3.556 ms
+multicast from 192.168.55.222, seq=5 dist=3 time=3.578 ms
+  unicast from 192.168.55.222, seq=6 dist=3 time=3.377 ms
+multicast from 192.168.55.222, seq=6 dist=3 time=3.439 ms
+  unicast from 192.168.55.222, seq=7 dist=3 time=3.000 ms
+multicast from 192.168.55.222, seq=7 dist=3 time=3.059 ms
+  unicast from 192.168.55.222, seq=8 dist=3 time=3.141 ms
+multicast from 192.168.55.222, seq=8 dist=3 time=3.168 ms
+  unicast from 192.168.55.222, seq=9 dist=3 time=3.657 ms
+multicast from 192.168.55.222, seq=9 dist=3 time=3.819 ms
+  unicast from 192.168.55.222, seq=10 dist=3 time=2.949 ms
 ```
 
-### PIM SSM Verification:
+### PIM SSM Verification and Troubleshooting:
+
+First, let's take a look at the IGMP information on the receiver end / leaf01
+
+```
+cumulus@leaf01:mgmt:~$ net show igmp sources
+Interface        Address         Group           Source          Timer Fwd Uptime
+swp1             192.168.11.1    232.43.211.234  192.168.55.222  03:40   Y 00:00:39
+```
+
+In the above example we see the Multicast group and the source of the SSM traffic.
+
+The SSM Multicast stream in our non-ECMP configuration (for simplicity) will be going over one of the two spine connections. Currently, the traffic is traversing spine02.
+
+On spine02, we have a connection down to leaf01 (receiver switch) through swp1:
+
+```
+cumulus@spine02:mgmt:~$ net show interface | grep -i "swp1 "
+UP     swp1    1G   9216   Default   leaf01 (swp52)
+```
+
+and a connection down to leaf04 (sender switch) through swp4:
+
+```
+cumulus@spine02:mgmt:~$ net show interface | grep -i "swp4 "
+UP     swp4    1G   9216   Default   leaf04 (swp52)
+```
+
+We can see the state that is being reported by PIM and that a Join is being requested from leaf01:
+
+```
+cumulus@spine02:mgmt:~$ net show pim state
+Codes: J -> Pim Join, I -> IGMP Report, S -> Source, * -> Inherited from (*,G), V -> VxLAN, M -> Muted
+Active Source           Group            RPT  IIF               OIL
+1      192.168.55.222   232.43.211.234   n    swp4              swp1( J   )
+```
+
+```
+cumulus@spine02:mgmt:~$ net show pim join
+Interface        Address         Source          Group           State      Uptime   Expire Prune
+swp1             10.1.1.2        192.168.55.222  232.43.211.234  JOIN       00:00:30 03:05  --:--
+```
+
+Next, we can see the "upstream" of the pim source, which is the sending switch / leaf04 through swp4:
+```
+cumulus@spine02:mgmt:~$ net show pim upstream
+Iif             Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
+swp4            192.168.55.222  232.43.211.234  J           00:00:54 00:00:39  --:--:--  00:03:05       2
+```
+
+Finally, we can see PIM is in Sparse Mode and that a tree is being built through swp4 to swp1:
+
+```
+cumulus@spine02:mgmt:~$ net show mroute
+IP Multicast Routing Table
+Flags: S - Sparse, C - Connected, P - Pruned
+       R - RP-bit set, F - Register flag, T - SPT-bit set
+
+Source          Group           Flags   Proto  Input            Output           TTL  Uptime
+192.168.55.222  232.43.211.234  ST              PIM    swp4             swp1             1    00:01:11
+```

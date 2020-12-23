@@ -24,7 +24,6 @@ line vty
 interface lo
  ip pim
 interface swp2
- ip igmp
  ip pim
 interface swp51
  ip pim
