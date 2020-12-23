@@ -21,6 +21,8 @@ router bgp 65011
 !
 line vty
 !
+interface lo
+ ip pim
 interface swp1
  ip igmp
  ip pim

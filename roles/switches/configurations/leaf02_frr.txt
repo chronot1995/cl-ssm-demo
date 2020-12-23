@@ -20,6 +20,8 @@ router bgp 65012
 !
 line vty
 !
+interface lo
+ ip pim
 interface swp51
  ip pim
 interface swp52
