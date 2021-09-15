@@ -10,9 +10,9 @@ OPTIONAL 1. First, create a "Cumulus In the Cloud" Reference Topology within Cum
 
 OPTIONAL 2. Next, copy the gitlab repo unto the oob-mgmt-server:
 
-    ```
-    git clone https://gitlab.com/nvidia-networking/systems-engineering/poc-support/source-specific-multicast-demo
-    ```
+   ```
+   git clone https://gitlab.com/nvidia-networking/systems-engineering/poc-support/source-specific-multicast-demo
+   ```
 
 3. Change directories to the following
 
