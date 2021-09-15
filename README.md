@@ -6,9 +6,9 @@ Source Specific Multicast Demo
 
 This will demo Source Specific Multicast (SSM) on Cumulus Linux
 
-1. First, create a "Cumulus In the Cloud" Reference Topology within Cumulus Air. We will be presenting this demo using a subset of the overall cldemo2 topology.
+OPTIONAL 1. First, create a "Cumulus In the Cloud" Reference Topology within Cumulus Air if you're building this demo from scratch. We will be presenting this demo using a subset of the overall cldemo2 topology.
 
-2. Next, copy the gitlab repo unto the oob-mgmt-server:
+OPTIONAL 2. Next, copy the gitlab repo unto the oob-mgmt-server:
 
     ```
     git clone https://gitlab.com/nvidia-networking/systems-engineering/poc-support/source-specific-multicast-demo
@@ -16,15 +16,15 @@ This will demo Source Specific Multicast (SSM) on Cumulus Linux
 
 3. Change directories to the following
 
-    ```
-    cd source-specific-multicast-demo
-    ```
+   ```
+   cd source-specific-multicast-demo
+   ```
 
 4. Run the following:
 
-    ```
-    ansible-playbook ssm.yml
-    ```
+   ```
+   ansible-playbook ssm.yml
+   ```
 
 This will setup a BGP underlay between the leaf01-04 and spine01-02. The remaining links in the cldemo2 topology will be disabled to avoid any issues. This will also setup and configure server01 and server05 for SSM iperf traffic.
 
@@ -35,7 +35,7 @@ This will setup a BGP underlay between the leaf01-04 and spine01-02. The remaini
 2. Log into server05 and start the ssmping server with the following command:
 
 ```
-ssmpingd
+ssmpingd &
 ```
 
 3. Log into server01 and start the ssmping client with the following command:
@@ -134,6 +134,7 @@ swp1             10.1.1.2        192.168.55.222  232.43.211.234  JOIN       00:0
 ```
 
 Next, we can see the "upstream" of the pim source, which is the sending switch / leaf04 through swp4:
+
 ```
 cumulus@spine02:mgmt:~$ net show pim upstream
 Iif             Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
