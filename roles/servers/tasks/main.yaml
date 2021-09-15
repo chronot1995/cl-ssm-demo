@@ -1,5 +1,4 @@
 ---
-
 - name: Copy server01 interfaces configuration
   template:
     src: interfaces-server01.j2
@@ -17,10 +16,6 @@
 - name: Sleep for server to disconnect
   pause:
     seconds: 5
-
-- name: reboot
-  reboot:
-    pre_reboot_delay: 60
 
 - name: Flush Handlers, best practice
   meta: flush_handlers
