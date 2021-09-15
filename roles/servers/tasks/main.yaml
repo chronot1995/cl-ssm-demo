@@ -4,6 +4,7 @@
     src: interfaces-server01.j2
     dest: /etc/network/interfaces
     backup: yes
+  notify: reload networking
   when: inventory_hostname == "server01"
 
 - name: Copy server05 interfaces configuration
@@ -11,6 +12,7 @@
     src: interfaces-server05.j2
     dest: /etc/network/interfaces
     backup: yes
+  notify: reload networking
   when: inventory_hostname == "server05"
 
 - name: Sleep for server to disconnect
