@@ -1,0 +1,44 @@
+graph ssmdemo {
+   
+   "fake" [function="fake"]
+   "oob-mgmt-server"  [function="oob-server" cpu="2" memory="2048"]
+   "oob-mgmt-switch"  [function="oob-switch" mgmt_ip="192.168.200.251"]
+
+   "spine01" [function="spine" version="4.4.0" mgmt_ip="192.168.200.21" ports="32"]
+   "spine02" [function="spine" version="4.4.0" mgmt_ip="192.168.200.22" ports="32"]
+   "leaf01" [function="leaf" version="4.4.0" mgmt_ip="192.168.200.11" ports="54"]
+   "leaf02" [function="leaf" version="4.4.0" mgmt_ip="192.168.200.12" ports="54"]
+   "leaf03" [function="leaf" version="4.4.0" mgmt_ip="192.168.200.13" ports="54"]
+   "leaf04" [function="leaf" version="4.4.0" mgmt_ip="192.168.200.14" ports="54"]
+   
+   "server01" [function="host" os="generic/ubuntu1804" mgmt_ip="192.168.200.31" nic_model="e1000"]
+   "server05" [function="host" os="generic/ubuntu1804" mgmt_ip="192.168.200.35" nic_model="e1000"]
+
+   "spine01":"swp1" -- "leaf01":"swp51"
+   "spine02":"swp1" -- "leaf01":"swp52"
+
+   "spine01":"swp2" -- "leaf02":"swp51"
+   "spine02":"swp2" -- "leaf02":"swp52"
+
+   "spine01":"swp3" -- "leaf03":"swp51"
+   "spine02":"swp3" -- "leaf03":"swp52"
+
+   "spine01":"swp4" -- "leaf04":"swp51"
+   "spine02":"swp4" -- "leaf04":"swp52"
+
+
+   "leaf01":"swp1" -- "server01":"eth1"
+
+   "leaf04":"swp2" -- "server05":"eth2"
+
+   "oob-mgmt-server":"eth1" -- "oob-mgmt-switch":"swp1"
+   "server01":"eth0" -- "oob-mgmt-switch":"swp2" [left_mac="44:38:39:22:01:7e"]
+
+   "server05":"eth0" -- "oob-mgmt-switch":"swp6" [left_mac="44:38:39:22:01:88"]
+   "leaf01":"eth0" -- "oob-mgmt-switch":"swp10" [left_mac="44:38:39:22:01:7a"]
+   "leaf02":"eth0" -- "oob-mgmt-switch":"swp11" [left_mac="44:38:39:22:01:78"]
+   "leaf03":"eth0" -- "oob-mgmt-switch":"swp12" [left_mac="44:38:39:22:01:84"]
+   "leaf04":"eth0" -- "oob-mgmt-switch":"swp13" [left_mac="44:38:39:22:01:8a"]
+   "spine01":"eth0" -- "oob-mgmt-switch":"swp14" [left_mac="44:38:39:22:01:82"]
+   "spine02":"eth0" -- "oob-mgmt-switch":"swp15" [left_mac="44:38:39:22:01:92"]
+}
