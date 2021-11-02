@@ -6,9 +6,9 @@ Source Specific Multicast Demo
 
 This will demo Source Specific Multicast (SSM) on Cumulus Linux
 
-OPTIONAL 1. First, create a "Cumulus In the Cloud" Reference Topology within Cumulus Air if you're building this demo from scratch. We will be presenting this demo using a subset of the overall cldemo2 topology.
+1. First, create a "Cumulus In the Cloud" Reference Topology within Cumulus Air if you're building this demo from scratch. We will be presenting this demo using a subset of the overall cldemo2 topology.
 
-OPTIONAL 2. Next, copy the gitlab repo unto the oob-mgmt-server:
+2. Next, copy the gitlab repo unto the oob-mgmt-server:
 
    ```
    git clone https://gitlab.com/nvidia-networking/systems-engineering/poc-support/source-specific-multicast-demo
@@ -27,10 +27,10 @@ OPTIONAL 2. Next, copy the gitlab repo unto the oob-mgmt-server:
    ```
 
 This will setup a BGP underlay between the leaf01-04 and spine01-02. The remaining links in the cldemo2 topology will be disabled to avoid any issues. This will also setup and configure server01 and server05 for SSM iperf traffic.
+<!-- AIR:tour -->
+### Testing SSM
 
-### Setting up
-
-1. First, you will need to open a few SSH sessions within Cumulus Air.
+1. First, you will need to open a few SSH sessions within Nvidia Air.
 
 2. Log into server05 and start the ssmping server with the following command:
 
@@ -152,3 +152,4 @@ Flags: S - Sparse, C - Connected, P - Pruned
 Source          Group           Flags   Proto  Input            Output           TTL  Uptime
 192.168.55.222  232.43.211.234  ST              PIM    swp4             swp1             1    00:01:11
 ```
+<!-- AIR:tour -->
