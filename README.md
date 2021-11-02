@@ -37,6 +37,10 @@ This will setup a BGP underlay between the leaf01-04 and spine01-02. The remaini
 ```
 ssmpingd &
 ```
+Return back to the oob-server before moving on to the next step.
+```
+exit
+```
 
 3. Log into server01 and start the ssmping client with the following command:
 
